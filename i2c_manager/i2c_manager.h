@@ -17,7 +17,7 @@ extern "C" {
 */
 
 // #define I2C_OEM xyz
-
+#undef I2C_OEM
 
 // Only here to get the I2C_NUM_0 and I2C_NUM_1 defines.
 #include <driver/i2c.h>

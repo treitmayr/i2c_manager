@@ -30,10 +30,11 @@ SOFTWARE.
 #ifndef __I2CDEV_H__
 #define __I2CDEV_H__
 
+#include <driver/i2c.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 // i2cdev-compatible I2C device descriptor.
 // Everything but the port and addr is ignored, port properties handled by I2C Manager
@@ -61,6 +62,15 @@ esp_err_t i2c_dev_read_reg(const i2c_dev_t *dev, uint8_t reg,
 esp_err_t i2c_dev_write_reg(const i2c_dev_t *dev, uint8_t reg,
         const void *out_data, size_t out_size);
 
+#define I2C_DEV_TAKE_MUTEX(dev) do { } while (0)
+#define I2C_DEV_GIVE_MUTEX(dev) do { } while (0)
+
+#define I2C_DEV_CHECK(dev,X) do { \
+        esp_err_t ___ = X; \
+        if (___ != ESP_OK) { \
+            return ___; \
+        } \
+    } while (0)
 
 #ifdef __cplusplus
 }
